@@ -5,7 +5,7 @@ Aspect which adds ARIA roles for lists and list items.
 -->
 
 <link rel="import" href="../basic-aspect/basic-aspect.html">
-<script src="../basic-shared/basic-helpers/BasicContentHelpers.js"></script>
+<script src="../basic-shared/ContentChanged.js"></script>
 
 <script>
 (function() {
@@ -13,7 +13,9 @@ Aspect which adds ARIA roles for lists and list items.
 // Used to assign unique IDs to item elements without IDs.
 idCount = 0;
 
-Polymer(mixin(BasicAspectMixin, {
+Polymer({
+
+  behaviors: [Basic.Aspect],
 
   contribute: {
 
@@ -83,7 +85,7 @@ Polymer(mixin(BasicAspectMixin, {
     // its items will get IDs that look like "_option1". Item IDs are prefixed
     // with an underscore to differentiate them from manually-assigned IDs, and
     // to minimize the potential for ID conflicts.
-    var host = BasicContentHelpers.getHost(this);
+    var host = Basic.ContentHelpers.getHost(this);
     if (host) {
       var hostId = host.getAttribute( "id" );
       if (hostId) {
@@ -94,7 +96,7 @@ Polymer(mixin(BasicAspectMixin, {
 
   _previousOutermostAspect: null
 
-}));
+});
 
 })();
 </script>
